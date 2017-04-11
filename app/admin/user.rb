@@ -2,14 +2,15 @@ ActiveAdmin.register User do
 	
 	config.filters = false
 	config.batch_actions = false
-	permit_params :email, :first_name, :last_name, :phone,:password
-config.comments = false
+	permit_params :email, :first_name, :last_name, :phone,:password, :first_name, :last_name
+
 	index do 
 		selectable_column
 		column :first_name
 		column :last_name
 		column :email
 		column :role
+	
 
 		actions 
 	end
@@ -17,7 +18,8 @@ config.comments = false
 	form do |f|
 		f.inputs 'Details' do
 		f.input :email
-		#f.input :name
+		f.input :first_name
+		f.input :last_name
 		f.input :password
 		f.input :password_confirmation
 		f.input :role
@@ -31,6 +33,9 @@ show do
 		row :name
 		row :phone
 		row :dob
+		row :first_name
+		row :last_name
+		
 	end
 end
 	

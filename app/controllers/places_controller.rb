@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 	def index
 		@place = Place.all
-		render json: {:Place => @places}
+		render json: {:place => @places}
 end
 
 def create

@@ -52,13 +52,13 @@ user = User.find(params[:request][:user_id])
          other = User.where(role: 'boy')
          end
 
-      render json: {responsecode: 200, responsemessage: "home page" , home: other.as_json(only:[:id, :first_name, :last_name, :role])}
+      render json: {responsecode: 200, responsemessage: "home page" , home: other.as_json(only:[:id, :first_name, :last_name, :role, :dob, :country, :kids])}
 
 
   end
 def update
      
-    user = User.find_by(id: params[:user][:id])
+    user = User.where(id: params[:user][:id])
 
     return render json:{responsecode: 500, responsemessage: "User not found"} if user.blank?
  
@@ -78,7 +78,7 @@ def update
 private
 
 def home_params
-    params.require(:user).permit(:id, :first_name, :last_name, :role)
+    params.require(:user).permit(:id, :first_name, :last_name, :role, :dob, :country)
 
 end
 
@@ -87,7 +87,7 @@ def user_params
   end
    
   def update_params
-      params.require(:user).permit(:gender, :email, :street_name,:Kingdom_start_date,:Kingdom_today_date,:phone_no,:first_name,:last_name,:dob,:country,:address,:city,:kids,:state,:zip,:id)
+      params.require(:user).permit(:id,:gender, :email, :street_name,:Kingdom_start_date,:Kingdom_today_date,:phone_no,:first_name,:last_name,:dob,:country,:address,:city,:kids,:state,:zip)
 end
 
 end
